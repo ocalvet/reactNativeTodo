@@ -11,13 +11,13 @@ import React, {
   View
 } from 'react-native';
 
+import TodoApp from './components/TodoApp.js';
+
 class reactNativeTodo extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
+        <TodoApp style={styles.welcome} />
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
         </Text>
