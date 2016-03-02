@@ -2,12 +2,11 @@
 
 import React, {
   Component,
-  ListView,
-  View,
-  Text
+  ListView
 } from 'react-native';
 
 import styles from './styles.js';
+import TodoCategoryItem from './TodoCategoryItem.js';
 
 class TodoCategoryList extends Component {
 
@@ -18,9 +17,7 @@ class TodoCategoryList extends Component {
   renderTodoCategory(todoCategory) {
     console.log('item', todoCategory);
     return (
-      <View style={styles.appStyles.todoCategory}>
-        <Text>{todoCategory.title}</Text>
-      </View>
+     <TodoCategoryItem todoCategory={todoCategory} /> 
     );
   }
 
@@ -38,11 +35,9 @@ class TodoCategoryList extends Component {
     var clonedList = ds.cloneWithRows(list);
 
     return (
-      <View style={{ flex:1 }}>
       <ListView
       dataSource={clonedList}
       renderRow={this.renderTodoCategory} />
-      </View>
     );
   }
 
