@@ -13,7 +13,9 @@ module.exports = {
       backgroundColor: '#F5FCFF',
     },
     welcome: {
-      color: 'red',
+      color: '#242424',
+      marginBottom: 15,
+      marginTop: 15,
       fontSize: 24,
       fontWeight: 'bold',
       textAlign: 'center',

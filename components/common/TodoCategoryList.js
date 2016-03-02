@@ -2,6 +2,9 @@
 
 import React, {
   Component,
+  View,
+  Text,
+  TouchableHighlight,
   ListView
 } from 'react-native';
 
@@ -14,10 +17,19 @@ class TodoCategoryList extends Component {
     super(props);
   }
 
+  categoryItemPressed(category) {
+    // Navigate to category entries
+    console.log('Navigating to category', category);
+  }
+
   renderTodoCategory(todoCategory) {
     console.log('item', todoCategory);
     return (
-     <TodoCategoryItem todoCategory={todoCategory} /> 
+      <TouchableHighlight onPress={this.categoryItemPressed.bind(this, todoCategory)}>
+      <View>
+      <TodoCategoryItem todoCategory={todoCategory} />
+      </View>
+      </TouchableHighlight>
     );
   }
 
@@ -35,9 +47,12 @@ class TodoCategoryList extends Component {
     var clonedList = ds.cloneWithRows(list);
 
     return (
+      <View>
+      <Text style={styles.appStyles.welcome}>React Todo Application</Text>
       <ListView
       dataSource={clonedList}
-      renderRow={this.renderTodoCategory} />
+      renderRow={this.renderTodoCategory.bind(this)} />
+      </View>
     );
   }
 
