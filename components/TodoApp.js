@@ -1,11 +1,10 @@
 'use strict';
 
 import React, {
-  Component,
-  StyleSheet,
-  View,
-  Text
+  Component
 } from 'react-native';
+
+import TodoCategoryList from './common/TodoCategoryList.js';
 
 class TodoApp extends Component {
   constructor(props) {
@@ -13,28 +12,14 @@ class TodoApp extends Component {
   }
 
   render() {
+    var message = "hello";
+
+
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Hello</Text>
-      </View>
+      <TodoCategoryList />
     );
   }
 
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  }
-});
-
 
 module.exports = TodoApp;
