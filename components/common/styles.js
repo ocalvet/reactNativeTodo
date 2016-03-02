@@ -17,6 +17,12 @@ module.exports = {
       fontSize: 24,
       fontWeight: 'bold',
       textAlign: 'center',
+    },
+    todoCategory: {
+      paddingTop: 10,
+      paddingBottom: 10,
+      borderBottomWidth: 1,
+      borderBottomColor: 'gray'
     }
   })
 
