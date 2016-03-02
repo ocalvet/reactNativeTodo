@@ -1,7 +1,9 @@
 'use strict';
 
 import React, {
-  Component
+  Component,
+  View,
+  StatusBar
 } from 'react-native';
 
 import TodoCategoryList from './common/TodoCategoryList.js';
@@ -16,7 +18,10 @@ class TodoApp extends Component {
 
 
     return (
+      <View>
+      <StatusBar hidden={true} />
       <TodoCategoryList />
+      </View>
     );
   }
 

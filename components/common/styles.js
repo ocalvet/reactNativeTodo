@@ -19,8 +19,7 @@ module.exports = {
       textAlign: 'center',
     },
     todoCategory: {
-      paddingTop: 10,
-      paddingBottom: 10,
+      padding: 10,
       borderBottomWidth: 1,
       borderBottomColor: 'gray'
     }
