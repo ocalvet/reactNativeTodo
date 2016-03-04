@@ -30,7 +30,7 @@ class TodoApp extends Component {
           }}
           initialRoute={{
             component: TodoCategoryList,
-            title: 'Category List'
+            title: 'Todos'
           }}
         />
       </View>

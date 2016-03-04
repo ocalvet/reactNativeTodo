@@ -10,6 +10,7 @@ import React, {
 
 import styles from './styles.js';
 import TodoListItem from './TodoCategoryItem.js';
+import TodoItem from './TodoItem.js';
 
 class TodoList extends Component {
 
@@ -17,9 +18,17 @@ class TodoList extends Component {
     super(props);
   }
 
+  todoItemPress(todo) {
+    console.log('Todo done', todo);
+  }
+  
   renderTodoItem(todo) {
     return (
-      <Text>{todo.title}</Text>
+      <TouchableHighlight onPress={this.todoItemPress.bind(this, todo)}>
+        <View>
+          <TodoItem todo={todo} />
+        </View>
+      </TouchableHighlight>
     )
   }
 

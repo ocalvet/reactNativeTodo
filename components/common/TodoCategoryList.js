@@ -20,15 +20,13 @@ class TodoCategoryList extends Component {
 
   categoryItemPressed(category) {
     // Navigate to category entries
-    console.log('Navigating to category', category);
     this.props.navigator.push({
       component: TodoList,
-      title: category.title + ' Todos'
+      title: category.title
     });
   }
 
   renderTodoCategory(todoCategory) {
-    console.log('item', todoCategory);
     return (
       <TouchableHighlight onPress={this.categoryItemPressed.bind(this, todoCategory)}>
         <View>

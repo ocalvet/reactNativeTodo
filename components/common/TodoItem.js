@@ -8,18 +8,16 @@ import React, {
 
 import styles from './styles.js';
 
-class TodoCategoryItem extends Component {
+class TodoItem extends Component {
 
   constructor(props) {
-    console.log('props', props);
     super(props);
   }
 
   render() {
-    console.log('category item', this.props)
     return (
       <View style={styles.appStyles.listItem}>
-        <Text>{this.props.todoCategory.title}</Text>
+        <Text>{this.props.todo.title}</Text>
       </View>
     );
 
@@ -27,4 +25,4 @@ class TodoCategoryItem extends Component {
 
 }
 
-module.exports = TodoCategoryItem;
+module.exports = TodoItem;

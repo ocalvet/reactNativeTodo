@@ -20,10 +20,11 @@ module.exports = {
       fontWeight: 'bold',
       textAlign: 'center',
     },
-    todoCategory: {
-      padding: 10,
+    listItem: {
+      padding: 25,
+      alignItems: 'center',
       borderBottomWidth: 1,
-      borderBottomColor: 'gray'
+      borderBottomColor: '#d1d1d1'
     }
   })
 
