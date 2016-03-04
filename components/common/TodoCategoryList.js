@@ -26,9 +26,9 @@ class TodoCategoryList extends Component {
     console.log('item', todoCategory);
     return (
       <TouchableHighlight onPress={this.categoryItemPressed.bind(this, todoCategory)}>
-      <View>
-      <TodoCategoryItem todoCategory={todoCategory} />
-      </View>
+        <View>
+          <TodoCategoryItem todoCategory={todoCategory} />
+        </View>
       </TouchableHighlight>
     );
   }
@@ -48,10 +48,10 @@ class TodoCategoryList extends Component {
 
     return (
       <View>
-      <Text style={styles.appStyles.welcome}>React Todo Application</Text>
-      <ListView
-      dataSource={clonedList}
-      renderRow={this.renderTodoCategory.bind(this)} />
+        <Text style={styles.appStyles.welcome}>React Todo Application</Text>
+        <ListView
+          dataSource={clonedList}
+          renderRow={this.renderTodoCategory.bind(this)} />
       </View>
     );
   }
