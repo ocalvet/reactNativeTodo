@@ -10,6 +10,7 @@ import React, {
 
 import styles from './styles.js';
 import TodoCategoryItem from './TodoCategoryItem.js';
+import TodoList from './TodoList.js';
 
 class TodoCategoryList extends Component {
 
@@ -20,6 +21,10 @@ class TodoCategoryList extends Component {
   categoryItemPressed(category) {
     // Navigate to category entries
     console.log('Navigating to category', category);
+    this.props.navigator.push({
+      component: TodoList,
+      title: category.title + ' Todos'
+    });
   }
 
   renderTodoCategory(todoCategory) {
@@ -35,11 +40,11 @@ class TodoCategoryList extends Component {
 
   render() {
     var list = [
-      { title: 'title 1', description: 'title 1 description', lastUpdated: new Date() },
-      { title: 'title 1', description: 'title 1 description', lastUpdated: new Date() },
-      { title: 'title 1', description: 'title 1 description', lastUpdated: new Date() },
-      { title: 'title 1', description: 'title 1 description', lastUpdated: new Date() },
-      { title: 'title 1', description: 'title 1 description', lastUpdated: new Date() }
+      { title: 'Category 1', description: 'title 1 description', lastUpdated: new Date() },
+      { title: 'Category 2', description: 'title 1 description', lastUpdated: new Date() },
+      { title: 'Category 3', description: 'title 1 description', lastUpdated: new Date() },
+      { title: 'Category 4', description: 'title 1 description', lastUpdated: new Date() },
+      { title: 'Category 5', description: 'title 1 description', lastUpdated: new Date() }
     ];
 
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -47,8 +52,11 @@ class TodoCategoryList extends Component {
     var clonedList = ds.cloneWithRows(list);
 
     return (
-      <View>
-        <Text style={styles.appStyles.welcome}>React Todo Application</Text>
+      <View
+        style={{
+            flex: 1,
+            justifyContent: 'flex-start'
+          }}>
         <ListView
           dataSource={clonedList}
           renderRow={this.renderTodoCategory.bind(this)} />

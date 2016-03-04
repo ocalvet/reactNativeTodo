@@ -3,7 +3,8 @@
 import React, {
   Component,
   View,
-  StatusBar
+  StatusBar,
+  NavigatorIOS
 } from 'react-native';
 
 import TodoCategoryList from './common/TodoCategoryList.js';
@@ -18,9 +19,20 @@ class TodoApp extends Component {
 
 
     return (
-      <View>
-      <StatusBar hidden={true} />
-      <TodoCategoryList />
+      <View
+        style={{
+            flex: 1
+          }}>
+        <StatusBar hidden={true} />
+        <NavigatorIOS
+          style={{
+            flex: 1
+          }}
+          initialRoute={{
+            component: TodoCategoryList,
+            title: 'Category List'
+          }}
+        />
       </View>
     );
   }
