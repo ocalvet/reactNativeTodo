@@ -16,6 +16,22 @@ class TodoCategoryList extends Component {
 
   constructor(props) {
     super(props);
+
+    var list = [
+      { title: 'Category 1', description: 'title 1 description', lastUpdated: new Date() },
+      { title: 'Category 2', description: 'title 1 description', lastUpdated: new Date() },
+      { title: 'Category 3', description: 'title 1 description', lastUpdated: new Date() },
+      { title: 'Category 4', description: 'title 1 description', lastUpdated: new Date() },
+      { title: 'Category 5', description: 'title 1 description', lastUpdated: new Date() }
+    ];
+
+    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+
+    var clonedList = ds.cloneWithRows(list);
+
+    this.state = {
+      categoryList: clonedList
+    };
   }
 
   categoryItemPressed(category) {
@@ -37,17 +53,6 @@ class TodoCategoryList extends Component {
   }
 
   render() {
-    var list = [
-      { title: 'Category 1', description: 'title 1 description', lastUpdated: new Date() },
-      { title: 'Category 2', description: 'title 1 description', lastUpdated: new Date() },
-      { title: 'Category 3', description: 'title 1 description', lastUpdated: new Date() },
-      { title: 'Category 4', description: 'title 1 description', lastUpdated: new Date() },
-      { title: 'Category 5', description: 'title 1 description', lastUpdated: new Date() }
-    ];
-
-    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-
-    var clonedList = ds.cloneWithRows(list);
 
     return (
       <View
@@ -56,7 +61,7 @@ class TodoCategoryList extends Component {
             justifyContent: 'flex-start'
           }}>
         <ListView
-          dataSource={clonedList}
+          dataSource={this.state.categoryList}
           renderRow={this.renderTodoCategory.bind(this)} />
       </View>
     );
