@@ -16,23 +16,6 @@ class TodoList extends Component {
 
   constructor(props) {
     super(props);
-  }
-
-  todoItemPress(todo) {
-    console.log('Todo done', todo);
-  }
-  
-  renderTodoItem(todo) {
-    return (
-      <TouchableHighlight onPress={this.todoItemPress.bind(this, todo)}>
-        <View>
-          <TodoItem todo={todo} />
-        </View>
-      </TouchableHighlight>
-    )
-  }
-
-  render() {
     var list = [
       { title: 'Todo Item 1', description: 'title 1 description', lastUpdated: new Date() },
       { title: 'Todo Item 2', description: 'title 1 description', lastUpdated: new Date() },
@@ -55,6 +38,26 @@ class TodoList extends Component {
 
     var clonedList = ds.cloneWithRows(list);
 
+    this.state = {
+      todoList: clonedList
+    };
+  }
+
+  todoItemPress(todo) {
+    console.log('Todo done', todo);
+  }
+
+  renderTodoItem(todo) {
+    return (
+      <TouchableHighlight onPress={this.todoItemPress.bind(this, todo)}>
+        <View>
+          <TodoItem todo={todo} />
+        </View>
+      </TouchableHighlight>
+    )
+  }
+
+  render() {
     return (
       <View
         style={{
@@ -62,7 +65,7 @@ class TodoList extends Component {
           justifyContent: 'flex-start'
         }}>
         <ListView
-          dataSource={clonedList}
+          dataSource={this.state.todoList}
           renderRow={this.renderTodoItem.bind(this)} />
       </View>
     );
