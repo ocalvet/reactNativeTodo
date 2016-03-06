@@ -11,27 +11,50 @@ import React, {
 import styles from './styles.js';
 import TodoCategoryItem from './TodoCategoryItem.js';
 import TodoList from './TodoList.js';
+import Firebase from 'firebase';
+
 
 class TodoCategoryList extends Component {
 
   constructor(props) {
     super(props);
 
-    var list = [
-      { title: 'Category 1', description: 'title 1 description', lastUpdated: new Date() },
-      { title: 'Category 2', description: 'title 1 description', lastUpdated: new Date() },
-      { title: 'Category 3', description: 'title 1 description', lastUpdated: new Date() },
-      { title: 'Category 4', description: 'title 1 description', lastUpdated: new Date() },
-      { title: 'Category 5', description: 'title 1 description', lastUpdated: new Date() }
-    ];
+    this.firebaseRef = new Firebase('https://reactnatodo.firebaseio.com/');
 
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-    var clonedList = ds.cloneWithRows(list);
+    var categoryList = this;
 
-    this.state = {
-      categoryList: clonedList
-    };
+    this.firebaseRef.once('value')
+      .then(function(snapshot) {
+        var data = snapshot.val();
+        console.log('data from firebase', data);
+
+        var clonedList = ds.cloneWithRows(data);
+
+        categoryList.setState({
+          categoryList: clonedList
+        });
+      });
+
+      var list = [
+        { title: 'Category 1', description: 'title 1 description', lastUpdated: new Date() },
+        { title: 'Category 2', description: 'title 1 description', lastUpdated: new Date() },
+        { title: 'Category 3', description: 'title 1 description', lastUpdated: new Date() },
+        { title: 'Category 4', description: 'title 1 description', lastUpdated: new Date() },
+        { title: 'Category 5', description: 'title 1 description', lastUpdated: new Date() }
+      ];
+
+
+      var clonedList = ds.cloneWithRows([]);
+
+      this.state = {
+        categoryList: clonedList
+      };
+  }
+
+  componentDidMount() {
+    console.log('Se monto');
   }
 
   categoryItemPressed(category) {
