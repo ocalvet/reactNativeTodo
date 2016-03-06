@@ -17,51 +17,44 @@ import Firebase from 'firebase';
 class TodoCategoryList extends Component {
 
   constructor(props) {
+
     super(props);
+
+    var categoryList = this;
 
     this.firebaseRef = new Firebase('https://reactnatodo.firebaseio.com/');
 
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-    var categoryList = this;
-
     this.firebaseRef.once('value')
-      .then(function(snapshot) {
-        var data = snapshot.val();
-        console.log('data from firebase', data);
+    .then(function(snapshot) {
+      var data = snapshot.val();
 
-        var clonedList = ds.cloneWithRows(data);
+      console.log('data from firebase', data);
 
-        categoryList.setState({
-          categoryList: clonedList
-        });
-      });
+      var clonedList = ds.cloneWithRows(data);
 
-      var list = [
-        { title: 'Category 1', description: 'title 1 description', lastUpdated: new Date() },
-        { title: 'Category 2', description: 'title 1 description', lastUpdated: new Date() },
-        { title: 'Category 3', description: 'title 1 description', lastUpdated: new Date() },
-        { title: 'Category 4', description: 'title 1 description', lastUpdated: new Date() },
-        { title: 'Category 5', description: 'title 1 description', lastUpdated: new Date() }
-      ];
-
-
-      var clonedList = ds.cloneWithRows([]);
-
-      this.state = {
+      categoryList.setState({
         categoryList: clonedList
-      };
-  }
+      });
+    })
+    .catch(function(error) {
+      console.log('Error:', error);
+    });
 
-  componentDidMount() {
-    console.log('Se monto');
+    // Initialize empty datasource
+    var clonedList = ds.cloneWithRows([]);
+
+    this.state = {
+      categoryList: clonedList
+    };
   }
 
   categoryItemPressed(category) {
     // Navigate to category entries
     this.props.navigator.push({
       component: TodoList,
-      title: category.title
+      selectedCategory: category
     });
   }
 
@@ -79,13 +72,13 @@ class TodoCategoryList extends Component {
 
     return (
       <View
-        style={{
-            flex: 1,
-            justifyContent: 'flex-start'
-          }}>
+      style={{
+        flex: 1,
+        justifyContent: 'flex-start'
+      }}>
         <ListView
-          dataSource={this.state.categoryList}
-          renderRow={this.renderTodoCategory.bind(this)} />
+        dataSource={this.state.categoryList}
+        renderRow={this.renderTodoCategory.bind(this)} />
       </View>
     );
   }
