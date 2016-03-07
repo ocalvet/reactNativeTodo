@@ -72,13 +72,13 @@ class TodoCategoryList extends Component {
 
     return (
       <View
-      style={{
-        flex: 1,
-        justifyContent: 'flex-start'
-      }}>
-        <ListView
-        dataSource={this.state.categoryList}
-        renderRow={this.renderTodoCategory.bind(this)} />
+        style={{
+          flex: 1,
+          justifyContent: 'flex-start'
+        }}>
+          <ListView
+            dataSource={this.state.categoryList}
+            renderRow={this.renderTodoCategory.bind(this)} />
       </View>
     );
   }
